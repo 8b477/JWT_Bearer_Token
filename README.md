@@ -2,6 +2,11 @@
 Ce projet donne une base de conception pour sécuriser des endpoints API en utilisant JWT (JSON Web Token) avec un Bearer Token en ASP.NET Core.
 ## Configuration 🛠️
 
+- Package : `Microsoft.AspNetCore.Authentication.JwtBearer`  
+- Lien : [nuget.org](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.JwtBearer/8.0.7?_src=template)
+
+
+
 Dans le fichier appsettings.json, configurez les paramètres JWT :
 ```json
 "JWT": {
