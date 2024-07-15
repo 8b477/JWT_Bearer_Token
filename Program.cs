@@ -15,8 +15,8 @@ var builder = WebApplication.CreateBuilder(args);
 // SETUP
 builder.Services.Configure<JWTSettings>(builder.Configuration.GetSection("JWT"));
 builder.Services.AddScoped<IAuthentificationCustomRepository, AuthentificationCustomRepository>();
-builder.Services.AddTransient<JWTGenerationService>();
-builder.Services.AddTransient<JWTGetClaimsService>();
+builder.Services.AddScoped<JWTGenerationService>();
+builder.Services.AddScoped<JWTGetClaimsService>();
 builder.Services.AddHttpContextAccessor();
 
 JWTConfigurationCustomService.AddAuthentication(builder);
