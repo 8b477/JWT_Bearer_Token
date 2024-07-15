@@ -1,0 +1,30 @@
+@JWT_Bearer_Token_HostAddress = https://localhost:7105
+
+
+
+GET {{JWT_Bearer_Token_HostAddress}}/log
+Content-Type: application/json
+{
+  "Mail":"lily@mail.be",
+  "Password":"lily"
+}
+###
+
+
+GET {{JWT_Bearer_Token_HostAddress}}/log
+Content-Type: application/json
+{
+  "Mail":"user@mail.be",
+  "Password":"user"
+}
+###
+
+GET {{JWT_Bearer_Token_HostAddress}}/log
+Content-Type: application/json
+{
+  "Mail":"admin@mail.be",
+  "Password":"admin"
+}
+
+
+
