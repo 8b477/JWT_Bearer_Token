@@ -11,7 +11,9 @@ Dans le fichier appsettings.json, configurez les paramètres JWT :
 "DurationInMinutes": 180
 }
 ```
-**Note : La clé sera générée automatiquement si elle n'est pas spécifiée.**
+**Note : La clé sera générée automatiquement si elle n'est pas spécifiée.** 
+
+------------------
 
 Dans Program.cs, ajoutez les services nécessaires :
 ```c#
@@ -34,6 +36,7 @@ Ajoutez les middleware d'authentification et d'autorisation :
 app.UseAuthentication();
 app.UseAuthorization();
 ```
+------------------
 
 ## Création d'endpoints sécurisés 🛡️
 
@@ -53,20 +56,30 @@ Endpoint avec authentification (rôle Admin uniquement) :
 app.MapGet("/adminAccess", [Authorize(Policy = "AdminOnly")] () =>
 TypedResults.Ok(MockupDatabase.GetDataWeather()));
 ```
+*Accès au endpoint:*  
+[Get_data.http](https://github.com/8b477/JWT_Bearer_Token/blob/master/Get_data.http)
 
-Obtention du token 🔑
+------------------
+
+## Obtention du token 🔑  
 Pour obtenir un token JWT, utilisez l'endpoint d'authentification :
 ```C#
 app.MapGet("/log", ([FromServices] IAuthentificationCustomRepository authenticationService, [FromBody] UserLogDto log)
 => authenticationService.Authentification(log.Mail, log.Password));
 ```
+*Accès au endpoint:*    
+[Get_Token.http](https://github.com/8b477/JWT_Bearer_Token/blob/master/Get_Token.http)
 
-Utilisation du token 🚀
-Pour accéder aux endpoints sécurisés, incluez le token JWT dans l'en-tête de la requête :
+------------  
+
+### Utilisation du token 🚀  
+Ajoute le token JWT dans l'en-tête de la requête :
 ```http
 Authorization: Bearer <votre_token_jwt>
 ```
-Services JWT 🧰
+------------- 
+
+## Services JWT 🧰
 
 `JWTGenerationService` : Génère les tokens JWT.  
 `JWTGetClaimsService` : Récupère les claims du token JWT.  
@@ -84,5 +97,8 @@ Les politiques d'autorisation sont définies dans ``HandlerPolicy.cs`` :
 - La durée de validité du token est configurable.
 - Les rôles sont vérifiés pour l'accès aux endpoints sécurisés.
 
+-----------
 
-### ⚠️ **N'oubliez pas de protéger votre clé secrète et de ne jamais la partager ou la committer dans votre dépôt de code.**
+# ⚠️ **N'oubliez pas de protéger votre clé secrète et de ne jamais la partager ou la committer dans votre dépôt de code.** ⚠️
+
+------------
